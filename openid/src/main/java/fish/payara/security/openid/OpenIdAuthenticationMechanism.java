@@ -307,8 +307,8 @@ public class OpenIdAuthenticationMechanism implements HttpAuthenticationMechanis
                         requestURLWithProxy = String.format("%s://%s", request.getScheme(), proxyHost) + request.getRequestURI();
                     }
                     if (!requestURLWithProxy.equals(redirectURI)) {
-                        LOGGER.log(INFO, "OpenID Redirect URL {0} does not match with the request URL {1} through proxy {2}:{3} and constructed proxy URL: {4}",
-                                new Object[]{redirectURI, request.getRequestURL().toString(), proxyHost, proxyPort, requestURLWithProxy});
+                        LOGGER.log(INFO, "OpenID Redirect URL {0} does not match with constructed proxy URL {1} (proxy {2}:{3}, raw request URL: {4})",
+                                new Object[]{redirectURI, requestURLWithProxy, proxyHost, proxyPort, request.getRequestURL().toString()});
                         return httpContext.notifyContainerAboutLogin(NOT_VALIDATED_RESULT);
                     }
                 } else {
